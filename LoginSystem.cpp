@@ -381,6 +381,7 @@ void LoginSystem::Login() {
 
     while(trails <= 3 && !isCorrect) getIDForLogin(ID, trails, isCorrect);
     if(isTrailsCompleted(trails, "ID to login", isCorrect)) return;
+    if (Database.isBlocked(ID)) return;
 
     while (trails <= 3 && !isCorrect) getPasswordForLogin(password, ID, trails, isCorrect);
     if(isTrailsCompleted(trails, "password to login", isCorrect)) {
@@ -389,10 +390,7 @@ void LoginSystem::Login() {
         Database.blockUser(ID);
         return;
     }
-    if(Database.isBlocked(ID)) {
-        cout << "You are blocked from the system, Try again later or contact with support!" << endl;
-        return;
-    }
+    if (Database.isBlocked(ID)) return;
     LoginBoard(ID);
 }
 

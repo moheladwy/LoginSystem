@@ -31,6 +31,8 @@ bool Database::isPhoneNumberExist(const string& phoneNumber) {
 }
 
 bool Database::isBlocked(const string& ID) {
+    if (database[ID].isBlocked)
+        cout << "You are blocked from the system, Try again later or contact with support!" << endl;
     return database[ID].isBlocked;
 }
 
@@ -105,7 +107,7 @@ void Database::setProfileInDatabaseFile(User& userProfile, XLWorksheet& workShee
     workSheet.cell(userProfile.rowID, colmPhoneNumber).value() = userProfile.phoneNumber;
     workSheet.cell(userProfile.rowID, colmEmail).value() = userProfile.email;
     workSheet.cell(userProfile.rowID, colmPassword).value() = encryptPassword(userProfile.password);
-    workSheet.cell(userProfile.rowID, colmBlocked).value() = false;
+    workSheet.cell(userProfile.rowID, colmBlocked).value() = userProfile.isBlocked;
 }
 
 void Database::updateDatabaseFile(XLWorksheet& workSheet) {
