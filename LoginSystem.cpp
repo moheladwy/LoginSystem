@@ -221,6 +221,7 @@ void LoginSystem::getIDForRegister(unsigned int &trails, bool &isCorrect) {
         string ID;
         cout << "Enter the ID: ";
         getline(cin, ID);
+        makeLowerCase(ID);
         setID(ID);
         isCorrect = true;
     }
@@ -255,6 +256,7 @@ void LoginSystem::getEmailForRegister(unsigned int &trails, bool &isCorrect) {
         string email;
         cout << "Enter the email: ";
         getline(cin, email);
+        makeLowerCase(email);
         setEmail(email);
         isCorrect = true;
     }

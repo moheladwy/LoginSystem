@@ -17,6 +17,7 @@ namespace generalFunction {
     unsigned int setChoice(const string &choice, unsigned const int &endRange);
     void clearScreen();
     void passwordFormat();
+    void makeLowerCase(string&);
 
     string getChoice();
     string getFullNameForChange();

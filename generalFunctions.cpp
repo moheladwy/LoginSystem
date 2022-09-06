@@ -133,3 +133,9 @@ void generalFunction::passwordFormat() {
     cout << "5- Be 8 or more characters and less that 256 characters." << endl;
     cout << "--------------------------------------------------------" << endl;
 }
+
+void generalFunction::makeLowerCase(string& line)
+{
+    for (char& letter : line)
+        letter = char(tolower(int(letter)));
+}
