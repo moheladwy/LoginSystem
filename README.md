@@ -2,7 +2,9 @@
 
 Auther 
   
-    Mohamed Hussein Eladwy.
+    Name: Mohamed Hussein Eladwy.
+    Email: mohamed.h.eladwy@gmail.com
+    Jop: Computer Science Student.
 
 Language
 
