@@ -4,7 +4,7 @@ Auther
   
     Name: Mohamed Hussein Eladwy.
     Email: mohamed.h.eladwy@gmail.com
-    LinkedIn: https://www.linkedin.com/in/mohamedhusseineladwy
+    LinkedIn: linkedin.com/in/mohamedhusseineladwy
     Jop: Computer Science Student.
 
 Language
