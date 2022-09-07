@@ -1,11 +1,20 @@
 # LoginSystem
 
-Auther: Mohamed Hussein Eladwy.
+Auther 
+  
+    Mohamed Hussein Eladwy.
 
-Language: CPP.
+Language
 
-Libraries: OpenXLSX. (for Database)
+    CPP.
 
-Debugger: CMake.
+Libraries 
+
+    OpenXLSX. (for Database)
+
+Debugger 
+
+    CMake.
+
 
 This is a Login System for CMD Projects for Windows, Which is Written in CPP using OOP Princeples.
