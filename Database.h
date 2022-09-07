@@ -23,9 +23,9 @@ public:
 
 	User getProfile(const string&);
 	string getPassword(const string&);
-    string getEmail(const string &);
-    string getPhoneNumber(const string &);
-    string getFullName(const string &);
+    	string getEmail(const string &);
+    	string getPhoneNumber(const string &);
+    	string getFullName(const string &);
 
 
 	bool isUserExist(const string&);
@@ -37,7 +37,7 @@ public:
 	void fetchDatabaseFile();
 
 	void insertProfileIntoMapAndSets(User&);
-    void blockUser(const string &ID);
+    	void blockUser(const string &ID);
 	void updateEmail(const string&, User&);
 	void updatePhoneNumber(const string&, User&);
 	void updateDatabaseMapAndSets(const string&, const string&, unsigned const int&);
