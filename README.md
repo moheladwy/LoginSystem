@@ -19,4 +19,4 @@ Debugger
     CMake.
 
 
-This is a Login System for CMD Projects for Windows, Which is Written in CPP using OOP Princeples.
+This is a Login System for CMD Projects for Windows, Which is Written in CPP using OOP Principles.
