@@ -5,7 +5,7 @@ Auther
     Name: Mohamed Hussein Eladwy.
     Email: mohamed.h.eladwy@gmail.com
     LinkedIn: linkedin.com/in/mohamedhusseineladwy
-    Jop: Computer Science Student.
+    Jop: Student at Faculty of Computers and Artificial Intelligence at Cairo University.
 
 Language
 
