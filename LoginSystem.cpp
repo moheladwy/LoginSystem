@@ -3,7 +3,8 @@ using namespace std;
 using namespace OpenXLSX;
 using namespace generalFunction;
 
-void LoginSystem::printMainMenu() {
+void LoginSystem::printMainMenu()
+{
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "Options of the main menu:-" << endl;
     cout << "--------------------------" << endl;
@@ -13,7 +14,8 @@ void LoginSystem::printMainMenu() {
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 
-void LoginSystem::printLoginMenu() {
+void LoginSystem::printLoginMenu()
+{
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "Options of the login menu:-" << endl;
     cout << "---------------------------" << endl;
@@ -26,7 +28,8 @@ void LoginSystem::printLoginMenu() {
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 
-void LoginSystem::showProfileData(const string& ID) {
+void LoginSystem::showProfileData(const string &ID)
+{
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "Your Personal Information:-" << endl;
     cout << "----------------------------" << endl;
@@ -37,49 +40,60 @@ void LoginSystem::showProfileData(const string& ID) {
     cout << "Password: " << Database.getPassword(ID) << endl;
 }
 
-LoginSystem::LoginSystem() {
+LoginSystem::LoginSystem()
+{
     cout << "Welcome to my Login System Project." << endl;
     Database.fetchDatabaseFile();
 }
 
-LoginSystem::~LoginSystem() {
+LoginSystem::~LoginSystem()
+{
     printEndApp();
     Database.saveAllDataInDatabaseFile();
 }
 
-void LoginSystem::setID(const string &id) {
+void LoginSystem::setID(const string &id)
+{
     if (!(isValidID(id)) || Database.isUserExist(id))
         throw invalid_argument("Invalid argument for ID or it might be exist for someone else, Try again!.");
     profile.ID = id;
 }
 
-void LoginSystem::setFullName(const string &aName) {
-    if (!isValidFullName(aName)) throw invalid_argument("Invalid argument for Name.");
+void LoginSystem::setFullName(const string &aName)
+{
+    if (!isValidFullName(aName))
+        throw invalid_argument("Invalid argument for Name.");
     profile.fullName = aName;
 }
 
-void LoginSystem::setEmail(const string &anEmail) {
+void LoginSystem::setEmail(const string &anEmail)
+{
     if (!(isValidEmail(anEmail)) || Database.isEmailExist(anEmail))
         throw invalid_argument("Invalid argument for Email or it might be exist for someone else, Try again!.");
     profile.email = anEmail;
 }
 
-void LoginSystem::setPassword(const string &aPassword) {
-    if (!isValidPassword(aPassword)) throw invalid_argument("Invalid argument for Password.");
+void LoginSystem::setPassword(const string &aPassword)
+{
+    if (!isValidPassword(aPassword))
+        throw invalid_argument("Invalid argument for Password.");
     profile.password = aPassword;
 }
 
-void LoginSystem::setPhoneNumber(const string &phone) {
+void LoginSystem::setPhoneNumber(const string &phone)
+{
     if (!(isValidPhoneNumber(phone)) || Database.isPhoneNumberExist(phone))
         throw invalid_argument("Invalid argument for Phone Number or it might be exist for someone else, Try again!.");
     profile.phoneNumber = phone;
 }
 
-void LoginSystem::setBlockedMood(const bool &blockedMood) {
+void LoginSystem::setBlockedMood(const bool &blockedMood)
+{
     profile.isBlocked = blockedMood;
 }
 
-void LoginSystem::printEndApp() {
+void LoginSystem::printEndApp()
+{
     cout << "Thanks for using my Login System Application." << endl;
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "Author of the Project: Mohamed Hussein Hassan Eladwy." << endl;
@@ -92,21 +106,25 @@ bool LoginSystem::isValidNewFullName(const string &newName, const string &oldNam
         cout << "The new name must be different from the old one, Try again!" << endl;
     else if (!isValidFullName(newName))
         cout << "FullName is not valid, Try again!" << endl;
-    else if (newName != oldName) {
+    else if (newName != oldName)
+    {
         cout << "Changing the Full Name Done Successfully!" << endl;
         return true;
     }
     return false;
 }
 
-void LoginSystem::changeFullName(const string &ID) {
+void LoginSystem::changeFullName(const string &ID)
+{
     User userProfile = Database.getProfile(ID);
     string newName;
-    unsigned int trails = 1;
+    uint trails = 1;
 
-    while (trails < 4) {
+    while (trails < 4)
+    {
         newName = getFullNameForChange();
-        if (isValidNewFullName(newName, userProfile.fullName)) {
+        if (isValidNewFullName(newName, userProfile.fullName))
+        {
             Database.updateDatabaseMapAndSets(ID, newName, Database.getColmFullName());
             return;
         }
@@ -116,27 +134,31 @@ void LoginSystem::changeFullName(const string &ID) {
     }
 }
 
-bool LoginSystem::isValidNewPhoneNumber(const string& newPhoneNumber, const string& oldPhoneNumber)
+bool LoginSystem::isValidNewPhoneNumber(const string &newPhoneNumber, const string &oldPhoneNumber)
 {
     if (newPhoneNumber == oldPhoneNumber)
         cout << "The new phone number must be different from the old one, Try again!" << endl;
     else if (!isValidPhoneNumber(newPhoneNumber))
         cout << "Phone Number is not valid, Try again!" << endl;
-    else if (newPhoneNumber != oldPhoneNumber) {
+    else if (newPhoneNumber != oldPhoneNumber)
+    {
         cout << "Changing the Phone Number Done Successfully!" << endl;
         return true;
     }
     return false;
 }
 
-void LoginSystem::changePhoneNumber(const string &ID) {
+void LoginSystem::changePhoneNumber(const string &ID)
+{
     User userProfile = Database.getProfile(ID);
     string newPhoneNumber;
-    unsigned int trails = 1;
+    uint trails = 1;
 
-    while (trails < 4) {
+    while (trails < 4)
+    {
         newPhoneNumber = getPhoneNumberForChange();
-        if (isValidNewPhoneNumber(newPhoneNumber, userProfile.phoneNumber)) {
+        if (isValidNewPhoneNumber(newPhoneNumber, userProfile.phoneNumber))
+        {
             Database.updateDatabaseMapAndSets(ID, newPhoneNumber, Database.getColmPhoneNumber());
             return;
         }
@@ -152,21 +174,25 @@ bool LoginSystem::isValidNewEmail(const string &newEmail, const string &oldEmail
         cout << "The new Email must be different from the old one, Try again!" << endl;
     else if (!isValidEmail(newEmail))
         cout << "Email is not valid, Try again!" << endl;
-    else if (newEmail != oldEmail) {
+    else if (newEmail != oldEmail)
+    {
         cout << "Changing the Email Done Successfully!" << endl;
         return true;
     }
     return false;
 }
 
-void LoginSystem::changeEmail(const string &ID) {
+void LoginSystem::changeEmail(const string &ID)
+{
     User userProfile = Database.getProfile(ID);
     string newEmail;
-    unsigned int trails = 1;
+    uint trails = 1;
 
-    while (trails < 4) {
+    while (trails < 4)
+    {
         newEmail = getEmailForChange();
-        if (isValidNewEmail(newEmail, userProfile.email)) {
+        if (isValidNewEmail(newEmail, userProfile.email))
+        {
             Database.updateDatabaseMapAndSets(ID, newEmail, Database.getColmEmail());
             return;
         }
@@ -184,29 +210,34 @@ bool LoginSystem::isValidNewPassword(const string allPasswords[])
         cout << "The new Passwords do not matching, Try again!" << endl;
     else if (allPasswords[2] == allPasswords[0])
         cout << "The new password must be different from the old one, Try again!" << endl;
-    else if (!isValidPassword(allPasswords[2])) {
+    else if (!isValidPassword(allPasswords[2]))
+    {
         cout << "The new password does not follow the standard format, see it below." << endl;
         passwordFormat();
     }
-    else if (allPasswords[2] != allPasswords[0]) {
+    else if (allPasswords[2] != allPasswords[0])
+    {
         cout << "Changing the Password Done Successfully!" << endl;
         return true;
     }
     return false;
 }
 
-void LoginSystem::changePassword(const string &ID) {
+void LoginSystem::changePassword(const string &ID)
+{
     User userProfile = Database.getProfile(ID);
     string newPassword, allPasswords[4];
-    unsigned int trails = 1;
+    uint trails = 1;
     allPasswords[0] = userProfile.password;
 
-    while (trails < 4) {
+    while (trails < 4)
+    {
         allPasswords[1] = getPasswordForChange("old password");
         allPasswords[2] = newPassword = getPasswordForChange("new");
         allPasswords[3] = getPasswordForChange("repeat");
 
-        if (isValidNewPassword(allPasswords)) {
+        if (isValidNewPassword(allPasswords))
+        {
             Database.updateDatabaseMapAndSets(ID, newPassword, Database.getColmPassword());
             return;
         }
@@ -216,8 +247,10 @@ void LoginSystem::changePassword(const string &ID) {
     }
 }
 
-void LoginSystem::getIDForRegister(unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getIDForRegister(uint &trails, bool &isCorrect)
+{
+    try
+    {
         string ID;
         cout << "Enter the ID: ";
         getline(cin, ID);
@@ -225,34 +258,42 @@ void LoginSystem::getIDForRegister(unsigned int &trails, bool &isCorrect) {
         setID(ID);
         isCorrect = true;
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::getPasswordForRegister(unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getPasswordForRegister(uint &trails, bool &isCorrect)
+{
+    try
+    {
         passwordFormat();
         string password, repeatedPassword;
         cout << "Enter the password: ";
         getline(cin, password);
         cout << "Re-Enter the password: ";
         getline(cin, repeatedPassword);
-        if (password == repeatedPassword) {
+        if (password == repeatedPassword)
+        {
             setPassword(password);
             isCorrect = true;
         }
-        else throw invalid_argument("the password does not match, Try again!");
+        else
+            throw invalid_argument("the password does not match, Try again!");
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::getEmailForRegister(unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getEmailForRegister(uint &trails, bool &isCorrect)
+{
+    try
+    {
         string email;
         cout << "Enter the email: ";
         getline(cin, email);
@@ -260,54 +301,67 @@ void LoginSystem::getEmailForRegister(unsigned int &trails, bool &isCorrect) {
         setEmail(email);
         isCorrect = true;
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::getPhoneNumberForRegister(unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getPhoneNumberForRegister(uint &trails, bool &isCorrect)
+{
+    try
+    {
         string ID;
         cout << "Enter the phone number: ";
         getline(cin, ID);
         setPhoneNumber(ID);
         isCorrect = true;
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::getFullNameForRegister(unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getFullNameForRegister(uint &trails, bool &isCorrect)
+{
+    try
+    {
         string fullName;
         cout << "Enter the full name: ";
         getline(cin, fullName);
         setFullName(fullName);
         isCorrect = true;
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::LoginBoard(const string &ID) {
-    unsigned int choice;
+void LoginSystem::LoginBoard(const string &ID)
+{
+    uint choice;
     bool isLogin = true;
 
-    while(isLogin) {
+    while (isLogin)
+    {
         printLoginMenu();
-        try {
+        try
+        {
             choice = setChoice(getChoice(), 6);
             clearScreen();
 
-            if (choice != 6) executeLoginMenu(choice, ID);
-            else isLogin = false;
+            if (choice != 6)
+                executeLoginMenu(choice, ID);
+            else
+                isLogin = false;
         }
-        catch (const exception& e) {
+        catch (const exception &e)
+        {
             cerr << e.what() << endl;
         }
     }
@@ -315,23 +369,35 @@ void LoginSystem::LoginBoard(const string &ID) {
     cout << "You have logged out from the system!" << endl;
 }
 
-void LoginSystem::Register() {
-    unsigned int trails = 1; bool isCorrect = false;
+void LoginSystem::Register()
+{
+    uint trails = 1;
+    bool isCorrect = false;
 
-    while(trails <= 3 && !isCorrect) getFullNameForRegister(trails, isCorrect);
-    if(isTrailsCompleted(trails, "full name", isCorrect)) return;
+    while (trails <= 3 && !isCorrect)
+        getFullNameForRegister(trails, isCorrect);
+    if (isTrailsCompleted(trails, "full name", isCorrect))
+        return;
 
-    while(trails <= 3 && !isCorrect) getPhoneNumberForRegister(trails, isCorrect);
-    if(isTrailsCompleted(trails, "phone number", isCorrect)) return;
+    while (trails <= 3 && !isCorrect)
+        getPhoneNumberForRegister(trails, isCorrect);
+    if (isTrailsCompleted(trails, "phone number", isCorrect))
+        return;
 
-    while(trails <= 3 && !isCorrect) getIDForRegister(trails, isCorrect);
-    if(isTrailsCompleted(trails, "ID", isCorrect)) return;
+    while (trails <= 3 && !isCorrect)
+        getIDForRegister(trails, isCorrect);
+    if (isTrailsCompleted(trails, "ID", isCorrect))
+        return;
 
-    while(trails <= 3 && !isCorrect) getEmailForRegister(trails, isCorrect);
-    if(isTrailsCompleted(trails, "email", isCorrect)) return;
+    while (trails <= 3 && !isCorrect)
+        getEmailForRegister(trails, isCorrect);
+    if (isTrailsCompleted(trails, "email", isCorrect))
+        return;
 
-    while(trails <= 3 && !isCorrect) getPasswordForRegister(trails, isCorrect);
-    if(isTrailsCompleted(trails, "password", isCorrect)) return;
+    while (trails <= 3 && !isCorrect)
+        getPasswordForRegister(trails, isCorrect);
+    if (isTrailsCompleted(trails, "password", isCorrect))
+        return;
 
     setBlockedMood(false);
     Database.insertProfileIntoMapAndSets(profile);
@@ -340,63 +406,82 @@ void LoginSystem::Register() {
     LoginBoard(profile.ID);
 }
 
-void LoginSystem::getIDForLogin(string &ID, unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getIDForLogin(string &ID, uint &trails, bool &isCorrect)
+{
+    try
+    {
         cout << "Enter the ID: ";
         getline(cin, ID);
         if (Database.isUserExist(ID) == 0)
             throw invalid_argument("The ID does not exist, please register or try again with different ID.");
         isCorrect = true;
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::getPasswordForLogin(string &password, const string &ID, unsigned int &trails, bool &isCorrect) {
-    try {
+void LoginSystem::getPasswordForLogin(string &password, const string &ID, uint &trails, bool &isCorrect)
+{
+    try
+    {
         cout << "Enter the password: ";
         getline(cin, password);
         if (Database.getPassword(ID) != password)
             throw invalid_argument("The Password is not correct, Try again!");
         isCorrect = true;
     }
-    catch (const exception &e) {
+    catch (const exception &e)
+    {
         cerr << e.what() << endl;
         trails++;
     }
 }
 
-void LoginSystem::executeLoginMenu(unsigned const int &choice, const string &ID) {
-    if (choice == 1) showProfileData(ID);
-    else if (choice == 2) changeFullName(ID);
-    else if (choice == 3) changePhoneNumber(ID);
-    else if (choice == 4) changeEmail(ID);
-    else if (choice == 5) changePassword(ID);
+void LoginSystem::executeLoginMenu(ucint &choice, const string &ID)
+{
+    if (choice == 1)
+        showProfileData(ID);
+    else if (choice == 2)
+        changeFullName(ID);
+    else if (choice == 3)
+        changePhoneNumber(ID);
+    else if (choice == 4)
+        changeEmail(ID);
+    else if (choice == 5)
+        changePassword(ID);
 }
 
-void LoginSystem::Login() {
-    unsigned int trails = 1;
+void LoginSystem::Login()
+{
+    uint trails = 1;
     string ID, password;
     bool isCorrect = false;
 
-    while(trails <= 3 && !isCorrect) getIDForLogin(ID, trails, isCorrect);
-    if(isTrailsCompleted(trails, "ID to login", isCorrect)) return;
-    if (Database.isBlocked(ID)) return;
+    while (trails <= 3 && !isCorrect)
+        getIDForLogin(ID, trails, isCorrect);
+    if (isTrailsCompleted(trails, "ID to login", isCorrect))
+        return;
+    if (Database.isBlocked(ID))
+        return;
 
-    while (trails <= 3 && !isCorrect) getPasswordForLogin(password, ID, trails, isCorrect);
-    if(isTrailsCompleted(trails, "password to login", isCorrect)) {
+    while (trails <= 3 && !isCorrect)
+        getPasswordForLogin(password, ID, trails, isCorrect);
+    if (isTrailsCompleted(trails, "password to login", isCorrect))
+    {
         cout << "You are blocked from the system for security concerns." << endl;
         cout << "Try again later or contact with support!" << endl;
         Database.blockUser(ID);
         return;
     }
-    if (Database.isBlocked(ID)) return;
+    if (Database.isBlocked(ID))
+        return;
     LoginBoard(ID);
 }
 
-void LoginSystem::executeMainMenu(unsigned const int &choice) {
-    if (choice == 1) Register();
-    else Login();
+void LoginSystem::executeMainMenu(ucint &choice)
+{
+    (choice == 1) ? Register() : Login();
 }
